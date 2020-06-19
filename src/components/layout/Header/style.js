@@ -9,7 +9,15 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         flexGrow: 1,
+        "&:hover": {
+            textDecoration:"none",
+          },
     },
+    btn:{
+        "&:hover": {
+            textDecoration:"none",
+          },
+    }
 }));
 
 export default useStyles;
