@@ -2,8 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     container:{
-        margin:'1em',
-        backgroundColor:theme.palette.primary.main
+        marginTop:theme.mixins.toolbar,
     }
 }));
 

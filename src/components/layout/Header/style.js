@@ -15,9 +15,12 @@ const useStyles = makeStyles((theme) => ({
     },
     btn:{
         "&:hover": {
-            textDecoration:"none",
-          },
-    }
+            textDecoration:"none"
+            
+        }
+    
+    },
+    
 }));
 
 export default useStyles;

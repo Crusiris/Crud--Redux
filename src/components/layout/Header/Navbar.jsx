@@ -21,7 +21,9 @@ const Navbar = () => {
               <Button
                   variant="contained"
                   color="primary"
-                  className={classes.button}
+                  className={
+                    classes.button
+                    }
                   endIcon={ <AddIcon/>}
                > Agregar Producto</Button>
             </Link>
