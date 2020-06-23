@@ -26,7 +26,12 @@ const useStyles = makeStyles((theme) => ({
       borderBottom:"gray solid 0.5px",
       borderTop:"gray solid 0.5px",
       padding:"1em"
-    }
+    },
+    containertable:{
+      padding:"2em",
+    },
+    title:theme.mixins.toolbar
+    
   }));
 
 export default useStyles;

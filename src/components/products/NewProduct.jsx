@@ -1,5 +1,4 @@
 import React from 'react';
-import clsx from 'clsx';
 import { Grid, Box, Typography, FormControl, TextField, InputAdornment,Button} from '@material-ui/core';
 import useStyles from './style';
 
@@ -12,7 +11,7 @@ const NewProduct = () => {
 
             <Grid item xs={12}  md={10} lg={8}>
 
-            <div className={classes.offset} />
+              <div className={classes.offset} />
                 <Box className={classes.borde}>
                
                 <Typography variant="h5" align="center" gutterBottom>

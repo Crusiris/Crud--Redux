@@ -13,9 +13,9 @@ const Container = () => {
             <Navbar/>
                 <div className ={classes.container}>
                     <Switch>
-                    <Route exact path = "/" component = { Products }/> 
-                    <Route exact path="/productos/nuevo" component={NewProduct}/> 
-                    <Route exact path="/productos/:id" component={EditProduct}/> 
+                        <Route exact path = "/" component = { Products }/> 
+                        <Route exact path="/productos/nuevo" component={NewProduct}/> 
+                        <Route exact path="/productos/:id" component={EditProduct}/> 
                     </Switch> 
                 </div> 
         </Router>
