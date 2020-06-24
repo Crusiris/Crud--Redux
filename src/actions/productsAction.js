@@ -63,7 +63,7 @@ export function getProductsAction(){
         dispatch(downloadProducts());
 
         try {
-            const res = await clientAxios.get('/productosrr');
+            const res = await clientAxios.get('/productos');
             dispatch(downloadProductsSuccess(res.data))
         } catch (error) {
             //Si hay un error cambiar el state

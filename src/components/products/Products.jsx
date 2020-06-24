@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Product from './Product';
 import { useDispatch, useSelector } from 'react-redux';
 //Importando actions [FUNCION QUE CREA EL PRODUCTO] de Redux 
 import { getProductsAction } from '../../actions/productsAction';
@@ -14,13 +15,15 @@ const Products = () => {
 
     //Llamando a la funcion que obtiene los productos cuando inicie el componente
     useEffect( ()=> {
-        console.log('inicio useEffect');
         //Llamando a la funcion que consulta el API
         const loadProducts = ()=> dispatch(getProductsAction());
         loadProducts();
         // eslint-disable-next-line
     },[]);
 
+    //Obteniendo datos del state con useSelector
+    const products = useSelector(state => state.products.products);
+    
     return(
         <Grid container direction="row" justify="center">
          
@@ -42,11 +45,16 @@ const Products = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                     
+                      {products.length === 0 ? ('No hay productos'):(
+                          products.map(product =>(
+                              <Product
+                                  key={product.id}
+                                  product={product}
+                              />
+                          ))
+                      )}
+                       
                     </tbody>
                 </table>
             </Grid>
