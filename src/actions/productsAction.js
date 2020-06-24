@@ -1,3 +1,5 @@
+import clientAxios from '../config/axios';
+import Swal from 'sweetalert2';
 import {
     ADD_PRODUCT,
     ADD_PRODUCT_SUCCESS,
@@ -6,13 +8,33 @@ import {
 
 //Dispatch para crear productos
 export function createNewProductAction(product){
-    return (dispatch)=> {
+    return async (dispatch)=> {
         dispatch(addproduct());
 
         try {
+            //Insertando en la API
+            await clientAxios.post('/productos', product);
+            //Si todo sale bien entonces actualizamos el state
             dispatch(addProductSuccess(product));
+
+            //Mostrando notificacion al usuario 
+            Swal.fire(
+                'Correcto',
+                'El producto se agrego correctamente',
+                'success'
+            )
+
         } catch (error) {
+            console.log(error.response);
+            //Si hay un error cambiar el state
             dispatch(addProductError(true));
+
+            //Mostrando notificacion al usuario 
+            Swal.fire({
+                icon:'error',
+                title:'Hubo un error',
+                text:'Hubo un error, intenta de nuevo'
+            })
         }
     }
 }

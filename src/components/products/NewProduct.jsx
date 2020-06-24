@@ -6,7 +6,7 @@ import useStyles from './style';
 //Importando actions de Redux [funcion que agrega el producto]
 import { createNewProductAction } from '../../actions/productsAction';
 
-const NewProduct = () => {
+const NewProduct = ({history}) => {
     const classes = useStyles();
 
     //STATES LOCALES
@@ -18,7 +18,8 @@ const NewProduct = () => {
 
     //Llamando la funcion que esta en el action
     const addProduct = product => dispatch(createNewProductAction(product))
-
+    //Aceder al state del store
+    const load = useSelector( state=>state.products.loading );
     //Recibiendo los datos que envia el usuario
     const submitNewProduct = e => {
          e.preventDefault();
@@ -34,6 +35,9 @@ const NewProduct = () => {
             nameproduct,
             price
         });
+
+        //redireccionar
+        history.push('/');
     }
 
 
@@ -94,7 +98,7 @@ const NewProduct = () => {
                         </Button>
 
                 </form>
-
+                            
                 </Box>
             </Grid>
 
