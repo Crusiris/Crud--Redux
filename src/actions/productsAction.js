@@ -6,7 +6,8 @@ import {
     ADD_PRODUCT_ERROR,
     INIT_DOWNLOAD_PRODUCT,
     DOWNLOAD_PRODUCT_SUCCESS,
-    DOWNLOAD_PRODUCT_ERROR
+    DOWNLOAD_PRODUCT_ERROR,
+    GET_PRODUCT_DELETE
 } from '../type';
 
 //Dispatch para crear productos
@@ -85,4 +86,15 @@ export function getProductsAction(){
     const downloadProductsError = state => ({
         type:DOWNLOAD_PRODUCT_ERROR,
         payload:state
+    })
+
+    export function deleteProductAction (id) {
+        return async (dispatch) => {
+            dispatch(getProductDelete(id));
+        }
+    }
+
+    const getProductDelete = id => ({
+        type:GET_PRODUCT_DELETE,
+        payload:id
     })
