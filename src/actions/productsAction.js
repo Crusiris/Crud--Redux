@@ -3,7 +3,10 @@ import Swal from 'sweetalert2';
 import {
     ADD_PRODUCT,
     ADD_PRODUCT_SUCCESS,
-    ADD_PRODUCT_ERROR
+    ADD_PRODUCT_ERROR,
+    INIT_DOWNLOAD_PRODUCT,
+    DOWNLOAD_PRODUCT_SUCCESS,
+    DOWNLOAD_PRODUCT_ERROR
 } from '../type';
 
 //Dispatch para crear productos
@@ -38,20 +41,31 @@ export function createNewProductAction(product){
         }
     }
 }
-//Agregar el producto a BD
-const addproduct = ()=> ({
-    type: ADD_PRODUCT,
+    //Agregar el producto a BD
+    const addproduct = ()=> ({
+        type: ADD_PRODUCT,
+        payload:true
+    });
+
+    //Si se guardo exitosamente el producto
+    const addProductSuccess = product => ({
+        type:ADD_PRODUCT_SUCCESS,
+        payload:product
+    });
+
+    //Si hubo un error y no se guardo el producto
+    const addProductError = state => ({
+        type:ADD_PRODUCT_ERROR, 
+        payload:state
+    });
+
+export function getProductsAction(){
+    return async(dispatch) => {
+        dispatch(downloadProducts());
+    }
+}
+
+    const downloadProducts = () => ({
+    type:INIT_DOWNLOAD_PRODUCT,
     payload:true
-});
-
-//Si se guardo exitosamente el producto
-const addProductSuccess = product => ({
-    type:ADD_PRODUCT_SUCCESS,
-    payload:product
-})
-
-//Si hubo un error y no se guardo el producto
-const addProductError = state => ({
-    type:ADD_PRODUCT_ERROR, 
-    payload:state
-})
+    });
