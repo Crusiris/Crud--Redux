@@ -5,7 +5,9 @@ import {
     INIT_DOWNLOAD_PRODUCT,
     DOWNLOAD_PRODUCT_SUCCESS,
     DOWNLOAD_PRODUCT_ERROR,
-    GET_PRODUCT_DELETE
+    GET_PRODUCT_DELETE,
+    PRODUCT_DELETE_SUCCESS,
+    PRODUCT_DELETE_ERROR
 } from '../type';
 
 //Cada reducer tiene su propio state
@@ -30,6 +32,7 @@ export default function( state = initialState, action ){
                 loading:false,
                 products: [ ...state.products, action.payload ]
             }
+        case PRODUCT_DELETE_ERROR:
         case DOWNLOAD_PRODUCT_ERROR:   
         case ADD_PRODUCT_ERROR:
             return{
@@ -49,6 +52,15 @@ export default function( state = initialState, action ){
                 ...state,
                 deleteprojec:action.payload
             }
+        case PRODUCT_DELETE_SUCCESS:
+            return{
+                ...state,
+                loading:false,
+                error:null,
+                products:state.products.filter(product => product.id !== state.deleteprojec),
+                deleteprojec:null
+            }
+        
         default:
             return state;
     }

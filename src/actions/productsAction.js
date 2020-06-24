@@ -7,7 +7,9 @@ import {
     INIT_DOWNLOAD_PRODUCT,
     DOWNLOAD_PRODUCT_SUCCESS,
     DOWNLOAD_PRODUCT_ERROR,
-    GET_PRODUCT_DELETE
+    GET_PRODUCT_DELETE,
+    PRODUCT_DELETE_SUCCESS,
+    PRODUCT_DELETE_ERROR
 } from '../type';
 
 //Dispatch para crear productos
@@ -90,11 +92,28 @@ export function getProductsAction(){
 
     export function deleteProductAction (id) {
         return async (dispatch) => {
-            dispatch(getProductDelete(id));
+            //Llamando a la funcion que obtiene el producto a eliminar
+            dispatch(getProductDelete(id))
+            try {
+                await clientAxios.delete(`/productos/${id}`);
+                dispatch(deleteProductSuccess());
+            } catch (error) {
+                dispatch(deleteProductError(true));
+            }
+            
         }
     }
 
     const getProductDelete = id => ({
         type:GET_PRODUCT_DELETE,
         payload:id
+    });
+
+    const deleteProductSuccess = ()=>({
+        type:PRODUCT_DELETE_SUCCESS
+    });
+
+    const deleteProductError = state =>({
+        type:PRODUCT_DELETE_ERROR,
+        payload:state
     })
