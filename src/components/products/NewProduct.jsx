@@ -1,9 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Grid, Box, Typography, FormControl, TextField, InputAdornment,Button} from '@material-ui/core';
 import useStyles from './style';
 
+//Importando actions de Redux [funcion que agrega el producto]
+import { createNewProductAction } from '../../actions/productsAction';
+
 const NewProduct = () => {
     const classes = useStyles();
+
+    //STATES LOCALES
+
+    //Utilizando useDispatch para crear funcion
+    const dispatch = useDispatch();
+
+    //Llamando la funcion que esta en el action
+    const addProduct = ()=> dispatch(createNewProductAction())
+
+    //Recibiendo los datos que envia el usuario
+    const submitNewProduct = e => {
+         e.preventDefault();
+        console.log('entro aqui');
+
+        //Validando inputs
+
+        //Validando Errores
+
+        //Creando producto
+        addProduct();
+    }
+
+
     return(
        
         <Grid container direction="row" justify="center">
@@ -18,7 +45,9 @@ const NewProduct = () => {
                     Agregar nuevo producto
                 </Typography>
 
-                <FormControl display="colum" className={classes.containerForm} >
+                <form display="colum" className={classes.containerForm} 
+                 onSubmit={submitNewProduct}
+                >
                     <TextField
                         id="product"
                         name="nameproduct"
@@ -54,7 +83,7 @@ const NewProduct = () => {
                             Añadir 
                         </Button>
 
-                </FormControl>
+                </form>
 
                 </Box>
             </Grid>
