@@ -10,24 +10,30 @@ const NewProduct = () => {
     const classes = useStyles();
 
     //STATES LOCALES
+    const [ nameproduct, saveNameProduct ]= useState('');
+    const [ price, savePrice ]= useState(0);
 
     //Utilizando useDispatch para crear funcion
     const dispatch = useDispatch();
 
     //Llamando la funcion que esta en el action
-    const addProduct = ()=> dispatch(createNewProductAction())
+    const addProduct = product => dispatch(createNewProductAction(product))
 
     //Recibiendo los datos que envia el usuario
     const submitNewProduct = e => {
          e.preventDefault();
-        console.log('entro aqui');
 
         //Validando inputs
-
+        if(nameproduct.trim() ==='' || price <= 0){
+            return
+        }
         //Validando Errores
 
         //Creando producto
-        addProduct();
+        addProduct({
+            nameproduct,
+            price
+        });
     }
 
 
@@ -51,6 +57,8 @@ const NewProduct = () => {
                     <TextField
                         id="product"
                         name="nameproduct"
+                        value={nameproduct}
+                        onChange={ e => saveNameProduct(e.target.value)}
                         label="Nombre del producto"
                         className={classes.input}
                         placeholder="Introduzca el nombre del producto a agregar"
@@ -64,6 +72,8 @@ const NewProduct = () => {
                         <TextField
                         id="price"
                         name="priceproduct"
+                        value={price}
+                        onChange={ e => savePrice(Number(e.target.value))}
                         label="Precio del producto"
                         className={classes.input}
                         placeholder="Introduzca el valor del producto a agregar"
