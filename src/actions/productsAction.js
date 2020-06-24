@@ -28,7 +28,6 @@ export function createNewProductAction(product){
             )
 
         } catch (error) {
-            console.log(error.response);
             //Si hay un error cambiar el state
             dispatch(addProductError(true));
 
@@ -62,10 +61,28 @@ export function createNewProductAction(product){
 export function getProductsAction(){
     return async(dispatch) => {
         dispatch(downloadProducts());
+
+        try {
+            const res = await clientAxios.get('/productosrr');
+            dispatch(downloadProductsSuccess(res.data))
+        } catch (error) {
+            //Si hay un error cambiar el state
+            dispatch(downloadProductsError(true));
+        }
     }
 }
 
     const downloadProducts = () => ({
-    type:INIT_DOWNLOAD_PRODUCT,
-    payload:true
+        type:INIT_DOWNLOAD_PRODUCT,
+        payload:true
     });
+
+    const downloadProductsSuccess = products =>({
+        type:DOWNLOAD_PRODUCT_SUCCESS,
+        payload:products
+    });
+
+    const downloadProductsError = state => ({
+        type:DOWNLOAD_PRODUCT_ERROR,
+        payload:state
+    })

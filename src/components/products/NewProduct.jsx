@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Grid, Box, Typography, FormControl, TextField, InputAdornment,Button} from '@material-ui/core';
 import useStyles from './style';
 
-//Importando actions de Redux [funcion que agrega el producto]
+//Importando actions [FUNCION QUE CREA EL PRODUCTO] de Redux 
 import { createNewProductAction } from '../../actions/productsAction';
 
 const NewProduct = ({history}) => {

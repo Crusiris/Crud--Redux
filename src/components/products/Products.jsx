@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+//Importando actions [FUNCION QUE CREA EL PRODUCTO] de Redux 
+import { getProductsAction } from '../../actions/productsAction';
+
 import { Grid, Typography } from '@material-ui/core';
 import useStyles from './style';
 
 const Products = () => {
     const classes = useStyles();
+
+    //Guardando useDispatch en una constante
+    const dispatch = useDispatch();
+
+    //Llamando a la funcion que obtiene los productos cuando inicie el componente
+    useEffect( ()=> {
+        console.log('inicio useEffect');
+        //Llamando a la funcion que consulta el API
+        const loadProducts = ()=> dispatch(getProductsAction());
+        loadProducts();
+        // eslint-disable-next-line
+    },[]);
+
     return(
         <Grid container direction="row" justify="center">
          
