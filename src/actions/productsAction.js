@@ -97,6 +97,12 @@ export function getProductsAction(){
             try {
                 await clientAxios.delete(`/productos/${id}`);
                 dispatch(deleteProductSuccess());
+                    //Mostrar alerta si es que se elimino el producto
+                    Swal.fire(
+                        'Eliminado!',
+                        'El producto se a eliminado.',
+                        'success'
+                      )
             } catch (error) {
                 dispatch(deleteProductError(true));
             }
