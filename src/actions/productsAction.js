@@ -1,16 +1,9 @@
 import clientAxios from '../config/axios';
 import Swal from 'sweetalert2';
 import {
-    ADD_PRODUCT,
-    ADD_PRODUCT_SUCCESS,
-    ADD_PRODUCT_ERROR,
-    INIT_DOWNLOAD_PRODUCT,
-    DOWNLOAD_PRODUCT_SUCCESS,
-    DOWNLOAD_PRODUCT_ERROR,
-    GET_PRODUCT_DELETE,
-    PRODUCT_DELETE_SUCCESS,
-    PRODUCT_DELETE_ERROR
-} from '../type';
+    ADD_PRODUCT, ADD_PRODUCT_SUCCESS, ADD_PRODUCT_ERROR, INIT_DOWNLOAD_PRODUCT, DOWNLOAD_PRODUCT_SUCCESS,
+    DOWNLOAD_PRODUCT_ERROR, GET_PRODUCT_DELETE, PRODUCT_DELETE_SUCCESS, PRODUCT_DELETE_ERROR, 
+    GET_PRODUCT_EDIT, PRODUCT_EDIT_SUCCESS, PRODUCT_EDIT_ERROR } from '../type';
 
 //Dispatch para crear productos
 export function createNewProductAction(product){
@@ -92,7 +85,7 @@ export function getProductsAction(){
 
     export function deleteProductAction (id) {
         return async (dispatch) => {
-            //Llamando a la funcion que obtiene el producto a eliminar
+            //Llamando a la funcion que obtiene el id del producto a eliminar
             dispatch(getProductDelete(id))
             try {
                 await clientAxios.delete(`/productos/${id}`);
@@ -122,4 +115,17 @@ export function getProductsAction(){
     const deleteProductError = state =>({
         type:PRODUCT_DELETE_ERROR,
         payload:state
-    })
+    });
+
+    export function getProductEdit(product) {
+
+        return(dispatch) => {
+            //Llamando a la funcion que obtiene el producto a editar
+            dispatch( getProductActionEdit(product) )
+        }
+    }
+
+    const getProductActionEdit = product =>({
+        type:GET_PRODUCT_EDIT,
+        payload:product
+    });

@@ -7,7 +7,10 @@ import {
     DOWNLOAD_PRODUCT_ERROR,
     GET_PRODUCT_DELETE,
     PRODUCT_DELETE_SUCCESS,
-    PRODUCT_DELETE_ERROR
+    PRODUCT_DELETE_ERROR,
+    GET_PRODUCT_EDIT,
+    PRODUCT_EDIT_SUCCESS,
+    PRODUCT_EDIT_ERROR
 } from '../type';
 
 //Cada reducer tiene su propio state
@@ -15,7 +18,8 @@ const initialState = {
     products:[],
     error:null,
     loading:false,
-    deleteprojec:null,
+    deleteproduct:null,
+    editproduct:null
 }
 
 export default function( state = initialState, action ){
@@ -50,7 +54,7 @@ export default function( state = initialState, action ){
         case GET_PRODUCT_DELETE:
             return{
                 ...state,
-                deleteprojec:action.payload
+                deleteproduct:action.payload
             }
         case PRODUCT_DELETE_SUCCESS:
             return{
@@ -58,7 +62,12 @@ export default function( state = initialState, action ){
                 loading:false,
                 error:null,
                 products:state.products.filter(product => product.id !== state.deleteprojec),
-                deleteprojec:null
+                deleteproduct:null
+            }
+        case GET_PRODUCT_EDIT:
+            return{
+                ...state,
+                editproduct:action.payload
             }
         
         default:

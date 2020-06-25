@@ -32,10 +32,14 @@ const useStyles = makeStyles((theme) => ({
       },
       title:theme.mixins.toolbar,
       button: {
+        backgroundColor:"#4caf50",
+        color:theme.palette.common.white,
         margin: theme.spacing(1),
         "&:hover": {
-          textDecoration:"none",
-          color:theme.palette.text.secondary,
+          color:"#4caf50",
+          backgroundColor:theme.palette.common.white,
+          border:"#4caf50 solid 0.5px"
+       
        }
     },
     

@@ -1,9 +1,15 @@
 import React from 'react';
+import {useDispatch, useSelector} from 'react-redux'
 import { Grid, Box, Typography, FormControl, TextField, InputAdornment,Button} from '@material-ui/core';
 import useStyles from './style';
 
 const EditProduct = () => {
     const classes = useStyles();
+    //Obteniendo producto a editar
+    const product = useSelector(state => state.products.editproduct);
+    if(!product)return  null;
+    const { nameproduct, price,  id} = product
+    
     return(
         
         <Grid container direction="row" justify="center">
@@ -20,9 +26,11 @@ const EditProduct = () => {
 
             <FormControl display="colum" className={classes.containerForm} >
                 <TextField
+
+                    label="Nombre del producto"
                     id="product"
                     name="nameproduct"
-                    label="Nombre del producto"
+                    value={nameproduct}
                     className={classes.input}
                     placeholder="Introduzca el nombre del producto a agregar"
                     helperText="Ejemplo: Arroz, Pollo, Carne, Mortadela"
@@ -33,9 +41,10 @@ const EditProduct = () => {
                     variant="outlined"/>
 
                     <TextField
+                    label="Precio del producto"
                     id="price"
                     name="priceproduct"
-                    label="Precio del producto"
+                    value={price}
                     className={classes.input}
                     placeholder="Introduzca el valor del producto a agregar"
                     helperText="Ejemplo: 2000, 20000, 100000, 500000"
@@ -51,7 +60,7 @@ const EditProduct = () => {
                     />
 
                     <Button type="submit" variant="contained" color="primary" className={classes.btn}>
-                        Guardar
+                        Actualizar
                     </Button>
 
             </FormControl>

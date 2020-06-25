@@ -1,19 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import useStyles from './style';
 import Swal from 'sweetalert2'
+import EditIcon from '@material-ui/icons/Edit';
 
 //Redux
 import { useDispatch } from 'react-redux';
-import { deleteProductAction } from '../../actions/productsAction'
+import { deleteProductAction, getProductEdit } from '../../actions/productsAction'
 
 const Product = ({product}) => {
     const classes = useStyles();
     const { nameproduct, price, id } = product;
 
     const dispatch = useDispatch();
+    const history = useHistory()
 
     //Confirmar si desea eliminar el producto
     const confirmDeleteProduct = id =>{
@@ -35,20 +37,31 @@ const Product = ({product}) => {
           })
        
     }
+   
+    //Funcion para redirigir de forma programada
+    const redirectEdition = product => {
+        dispatch(getProductEdit(product));
+        history.push(`/productos/editar/${product.id}`)
+        
+    }
 
     return(
         <tr>
             <td>{nameproduct}</td>
             <td>$ {price}</td>
             <td>
-                <Link to={`/productos/editar/${id}`} className={classes.button} variant="outlined" color="primary">
-                    <Button variant="outlined" color="primary">Editar</Button>       
-                </Link>
-
+                <Button 
+                     variant="outlined" 
+                     color="primary"
+                     startIcon={<EditIcon/>}
+                     className={classes.button}
+                     onClick={()=>redirectEdition(product)}
+                >
+                Editar</Button>       
+                
                 <Button
                     variant="contained"
                     color="secondary"
-                    className={classes.button}
                     startIcon={<DeleteIcon />}
                     onClick={()=>confirmDeleteProduct(id)}
                 >
