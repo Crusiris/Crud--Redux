@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import {
     ADD_PRODUCT, ADD_PRODUCT_SUCCESS, ADD_PRODUCT_ERROR, INIT_DOWNLOAD_PRODUCT, DOWNLOAD_PRODUCT_SUCCESS,
     DOWNLOAD_PRODUCT_ERROR, GET_PRODUCT_DELETE, PRODUCT_DELETE_SUCCESS, PRODUCT_DELETE_ERROR, 
-    GET_PRODUCT_EDIT, PRODUCT_EDIT_SUCCESS, PRODUCT_EDIT_ERROR } from '../type';
+    GET_PRODUCT_EDIT, INIT_EDIT_PRODUCT, PRODUCT_EDIT_SUCCESS, PRODUCT_EDIT_ERROR } from '../type';
 
 //Dispatch para crear productos
 export function createNewProductAction(product){
@@ -129,3 +129,20 @@ export function getProductsAction(){
         type:GET_PRODUCT_EDIT,
         payload:product
     });
+
+    export function editProductAction(product) {
+        return async (dispatch)=>{
+            dispatch(editProduct(product));
+
+            try {
+                await clientAxios.put(`/productos/${product.is}`, product);
+            } catch (error) {
+                
+            }
+        }
+    }
+
+    const editProduct= product =>({
+        type:INIT_EDIT_PRODUCT,
+        payload:product
+    })

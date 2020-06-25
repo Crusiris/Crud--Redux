@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Grid, Box, Typography, FormControl, TextField, InputAdornment,Button} from '@material-ui/core';
+import { Grid, Box, Typography, TextField, InputAdornment,Button} from '@material-ui/core';
 import useStyles from './style';
 
 //Importando actions [FUNCION QUE CREA EL PRODUCTO] de Redux 
