@@ -9,7 +9,6 @@ import {
     PRODUCT_DELETE_SUCCESS,
     PRODUCT_DELETE_ERROR,
     GET_PRODUCT_EDIT,
-    INIT_EDIT_PRODUCT,
     PRODUCT_EDIT_SUCCESS,
     PRODUCT_EDIT_ERROR
 } from '../type';
@@ -37,6 +36,7 @@ export default function( state = initialState, action ){
                 loading:false,
                 products: [ ...state.products, action.payload ]
             }
+        case PRODUCT_EDIT_ERROR:
         case PRODUCT_DELETE_ERROR:
         case DOWNLOAD_PRODUCT_ERROR:   
         case ADD_PRODUCT_ERROR:
@@ -62,13 +62,20 @@ export default function( state = initialState, action ){
                 ...state,
                 loading:false,
                 error:null,
-                products:state.products.filter(product => product.id !== state.deleteprojec),
+                products:state.products.filter(product => product.id !== state.deleteproduct),
                 deleteproduct:null
             }
         case GET_PRODUCT_EDIT:
             return{
                 ...state,
                 editproduct:action.payload
+            }
+        case PRODUCT_EDIT_SUCCESS://Actualizando state con la nueva data
+            return{
+                ...state,
+                editproduct:null,
+                products:state.products.map(product => product.id === action.payload.id ? product = action.payload : product),
+                loading:false,
             }
         
         default:

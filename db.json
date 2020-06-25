@@ -1,19 +1,9 @@
 {
   "productos": [
     {
-      "nameproduct": "Rib Eye",
-      "price": "500",
-      "id": 7
-    },
-    {
       "nameproduct": "Jugo de Limón",
       "price": 100,
       "id": 9
-    },
-    {
-      "nameproduct": "1",
-      "price": 2,
-      "id": 10
     }
   ]
 }

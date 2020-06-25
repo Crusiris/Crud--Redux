@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import { editProductAction } from '../../actions/productsAction';
 import { Grid, Box, Typography, TextField, InputAdornment,Button} from '@material-ui/core';
@@ -6,12 +7,15 @@ import useStyles from './style';
 
 const EditProduct = () => {
     const classes = useStyles();
+    const dispatch = useDispatch();
+    const history = useHistory()
 
     //State local
     const [ product, saveProduct ]=useState({
         name:'',
         price:''
-    })
+    });
+    
     //Obteniendo producto a editar
     const productedit = useSelector(state => state.products.editproduct);
     
@@ -27,10 +31,14 @@ const EditProduct = () => {
             [e.target.name]:e.target.value
         })
     }
-    const { nameproduct, price,  id} = product
+    const { nameproduct, price} = product
 
     const submitEditProduct = e =>{
         e.preventDefault();
+
+        dispatch(editProductAction(product));
+        history.push('/');
+    
     }
     
     return(
@@ -67,7 +75,7 @@ const EditProduct = () => {
                     <TextField
                     label="Precio del producto"
                     id="price"
-                    name="priceproduct"
+                    name="price"
                     value={price}
                     className={classes.input}
                     onChange={onChangeForm}

@@ -132,17 +132,22 @@ export function getProductsAction(){
 
     export function editProductAction(product) {
         return async (dispatch)=>{
-            dispatch(editProduct(product));
+            dispatch(editProduct());
 
             try {
-                await clientAxios.put(`/productos/${product.is}`, product);
+                await clientAxios.put(`/productos/${product.id}`, product);
+                dispatch(editProductSuccess(product));
             } catch (error) {
                 
             }
         }
     }
 
-    const editProduct= product =>({
-        type:INIT_EDIT_PRODUCT,
+    const editProduct= () =>({
+        type:INIT_EDIT_PRODUCT
+    });
+
+    const editProductSuccess = product =>({
+        type:PRODUCT_EDIT_SUCCESS,
         payload:product
     })
