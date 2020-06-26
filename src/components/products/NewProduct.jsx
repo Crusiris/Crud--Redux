@@ -82,6 +82,7 @@ const NewProduct = ({history}) => {
                         placeholder="Introduzca el nombre del producto a agregar"
                         helperText="Ejemplo: Arroz, Pollo, Carne, Mortadela"
                         fullWidth
+                        mb={2}
                         InputLabelProps={{
                             shrink: true,
                         }}

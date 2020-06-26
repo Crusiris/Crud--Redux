@@ -83,6 +83,7 @@ const EditProduct = () => {
                     placeholder="Introduzca el nombre del producto a agregar"
                     helperText="Ejemplo: Arroz, Pollo, Carne, Mortadela"
                     fullWidth
+                    mb={1}
                     InputLabelProps={{
                         shrink: true,
                     }}
