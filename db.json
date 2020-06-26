@@ -1,9 +1,9 @@
 {
   "productos": [
     {
-      "nameproduct": "Jugo de Limón",
-      "price": 100,
-      "id": 9
+      "nameproduct": "Carne",
+      "price": "50000",
+      "id": 1
     }
   ]
 }

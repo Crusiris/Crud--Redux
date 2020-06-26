@@ -18,7 +18,7 @@ const Products = () => {
         //Llamando a la funcion que consulta el API
         const loadProducts = ()=> dispatch(getProductsAction());
         loadProducts();
-        // eslint-disable-next-line
+        // eslint-disable-next-line 
     },[]);
 
     //Obteniendo datos del state con useSelector
@@ -41,16 +41,21 @@ const Products = () => {
                 {load ? (  <LinearProgress />):null}
 
                 <table className="table" >
-                    <thead>
-                        <tr>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Precio</th>
-                            <th scope="col">Acciones</th>
-                        </tr>
-                    </thead>
+                    {products.length === 0 ? (<Alert severity="info">No existe ningun producto agregado</Alert>) :
+                    (
+                        <thead>
+                            <tr>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                       </thead>
+                    )
+                    }
+                    
                     <tbody>
                      
-                      {products.length === 0 ? ('No hay productos'):(
+                      {products.length === 0 ? null :(
                           products.map(product =>(
                               <Product
                                   key={product.id}

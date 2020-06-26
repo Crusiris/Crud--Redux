@@ -3,7 +3,11 @@ import { useHistory } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import { editProductAction } from '../../actions/productsAction';
 import { Grid, Box, Typography, TextField, InputAdornment,Button} from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 import useStyles from './style';
+
+////Importando actions [FUNCION QUE MUESTRA LA ALERTA] de Redux 
+import {showAlertAction} from '../../actions/alertAction'
 
 const EditProduct = () => {
     const classes = useStyles();
@@ -18,6 +22,7 @@ const EditProduct = () => {
     
     //Obteniendo producto a editar
     const productedit = useSelector(state => state.products.editproduct);
+    const alert = useSelector( state=>state.alert.alert);
     
     //Llenando el state automaticamente y mostrandolo en el formulario
     useEffect(()=>{
@@ -35,7 +40,15 @@ const EditProduct = () => {
 
     const submitEditProduct = e =>{
         e.preventDefault();
-
+        if(nameproduct.trim() ==='' || price <= 0){
+            const alert = {
+                message:'Ambos campos son obligatorios',
+                type:'warning'
+            }
+                //mostrar alerta
+            dispatch(showAlertAction(alert));
+            return;
+        }
         dispatch(editProductAction(product));
         history.push('/');
     
@@ -54,6 +67,8 @@ const EditProduct = () => {
             <Typography variant="h5" align="center" gutterBottom>
                 Editar producto
             </Typography>
+
+            {alert ? ( <Alert severity={alert.type}>{alert.message}</Alert>): null}
 
             <form display="colum" className={classes.containerForm} onSubmit={submitEditProduct} >
                 <TextField
