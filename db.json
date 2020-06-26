@@ -1,17 +1,17 @@
 {
   "productos": [
     {
-      "nameproduct": "Pollo",
+      "nameproduct": "Pollo y Arroz",
       "price": "50000",
       "id": 7
     },
     {
       "nameproduct": "Carne",
-      "price": 10000,
+      "price": "100000",
       "id": 9
     },
     {
-      "nameproduct": "Jamon",
+      "nameproduct": "Cafe",
       "price": 20000,
       "id": 10
     }

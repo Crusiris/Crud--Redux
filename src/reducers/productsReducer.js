@@ -73,9 +73,9 @@ export default function( state = initialState, action ){
         case PRODUCT_EDIT_SUCCESS://Actualizando state con la nueva data
             return{
                 ...state,
-                editproduct:null,
                 products:state.products.map(product => product.id === action.payload.id ? product = action.payload : product),
                 loading:false,
+                editproduct:null,
             }
         
         default:

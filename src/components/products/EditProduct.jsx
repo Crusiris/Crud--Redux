@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import { editProductAction } from '../../actions/productsAction';
+import { editProductAction, getProductsAction } from '../../actions/productsAction';
 import { Grid, Box, Typography, TextField, InputAdornment,Button} from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import useStyles from './style';
@@ -50,6 +50,7 @@ const EditProduct = () => {
             return;
         }
         dispatch(editProductAction(product));
+        dispatch(getProductsAction());
         history.push('/');
     
     }
