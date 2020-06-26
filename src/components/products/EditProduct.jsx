@@ -89,6 +89,8 @@ const EditProduct = () => {
                     }}
                     variant="outlined"/>
 
+                    <br></br>
+
                     <TextField
                     label="Precio del producto"
                     id="price"

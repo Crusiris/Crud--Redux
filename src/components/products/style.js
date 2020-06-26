@@ -40,7 +40,11 @@ const useStyles = makeStyles((theme) => ({
           backgroundColor:theme.palette.common.white,
           border:"#4caf50 solid 0.5px"
        
-       }
+       },
+      spacing:{
+        marginBottom: theme.spacing(1),
+        
+      }
     },
     
   }));

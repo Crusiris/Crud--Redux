@@ -88,6 +88,8 @@ const NewProduct = ({history}) => {
                         }}
                         variant="outlined"/>
 
+                        <br></br>
+                        
                         <TextField
                         id="price"
                         name="priceproduct"
