@@ -1,3 +1,19 @@
 {
-  "productos": []
+  "productos": [
+    {
+      "nameproduct": "Pollo",
+      "price": "50000",
+      "id": 7
+    },
+    {
+      "nameproduct": "Carne",
+      "price": 10000,
+      "id": 9
+    },
+    {
+      "nameproduct": "Jamon",
+      "price": 20000,
+      "id": 10
+    }
+  ]
 }
