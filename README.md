@@ -13,7 +13,7 @@ Proyecto web sencillo, que se conecta a la simulacion de un API REST creada con 
 ![Imagen crud 2](https://github.com/Crusiris/Crud--Redux/blob/master/public/img/crudredux2.jpg "Imagen a de la aplicacion") 
 
 ### Layout Four
-![Imagen crud 4](https://github.com/Crusiris/Crud--Redux/blob/master/public/img/crudredux3.jpg.jpg "Imagen a de la aplicacion")
+![Imagen crud 4](https://github.com/Crusiris/Crud--Redux/blob/master/public/img/crudredux3.jpg "Imagen a de la aplicacion")
 
 
 ### Layout Five
